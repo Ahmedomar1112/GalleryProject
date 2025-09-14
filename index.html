@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Single Page: JS Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <canvas id="particles"></canvas>
+    <header>
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="nav-wrap">
+            <div class="brand">MyJS<span style="color:var(--text);">Site</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="link">Home</a></li>
+                    <li><a href="#carousel" class="link">Gallery</a></li>
+                    <li><a href="#typing" class="link">About</a></li>
+                    <li><a href="#services" class="link">Our service</a></li>
+                    <li><a href="#contact" class="link">Contact</a></li>
+                    <li><a href="#footer" class="link">Footer</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <!-- Search Box (Hidden by default) -->
+                <div class="search-box" id="searchBox">
+                    <input type="text" id="searchInput" placeholder="Search sections..." />
+                    <button id="searchClose">✖</button>
+                </div>
+
+                <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
+                <button class="icon-btn" id="themeToggle" title="Theme">🌓</button>
+                <button class="hamburger" id="hambBtn" aria-label="Open menu"><span class="bar"></span></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <div class="mobile-menu-content">
+            <a href="#home">Home</a>
+            <a href="#carousel">Gallery</a>
+            <a href="#typing">About</a>
+            <a href="#contact">Contact</a>
+            <a href="#footer">Footer</a>
+            <hr />
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+                <button class="icon-btn" id="mTheme">🌓</button>
+            </div>
+        </div>
+    </div>
+
+    <main id="home">
+
+        <!-- Hero Section -->
+        <section id="hero" class="section hero">
+            <div class="hero-content">
+                <h1>Welcome to MyJS Site 🚀</h1>
+                <p>We create interactive and modern web experiences using HTML, CSS, and JavaScript.</p>
+                <a href="#services" class="primary">Explore Services</a>
+
+            </div>
+        </section>
+
+        <!-- Section 2: Carousel -->
+        <section id="carousel" class="section">
+            <h2>Auto Gallery — slides right-to-left</h2>
+            <div class="carousel-wrap">
+                <div class="carousel-meta">Auto-play → Slides move from right to left</div>
+                <div class="carousel-track" id="track">
+                    <div class="slide"><img src="gallery/photo1.jpg" alt="slide 1">
+                        <div class="caption">Slide 1</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo2.jpg" alt="slide 2">
+                        <div class="caption">Slide 2</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo3.jpg" alt="slide 3">
+                        <div class="caption">Slide 3</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo4.jpg" alt="slide 4">
+                        <div class="caption">Slide 4</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo5.jpg" alt="slide 4">
+                        <div class="caption">Slide 4</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo6.jpg" alt="slide 4">
+                        <div class="caption">Slide 4</div>
+                    </div>
+                    <div class="slide"><img src="gallery/photo7.jpg" alt="slide 4">
+                        <div class="caption">Slide 4</div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="btn-ctrl" id="prev">◀</button>
+                    <button class="btn-ctrl" id="next">▶</button>
+                </div>
+            </div>
+            <div class="carousel-dots" id="dots"></div>
+        </section>
+
+
+        <!-- Section 3: Typing -->
+        <section id="typing" class="section">
+            <h2>Program with HTML</h2x>
+                <div class="typing-section">
+                    <div class="type-box">
+                        <div id="typeTarget" class="type-target"
+                            data-text="Building a website starts with HTML for structure, CSS for styling, and JavaScript for interactivity.
+With these three core technologies, you can create web pages that are not only well-structured but also beautiful and dynamic.
+Start with HTML to set the foundation, use CSS to design the look and feel, and finally add JavaScript to bring your site to life."></div>
+                    </div>
+                    <div class="illustration">
+                        <img id="illImg" src="gallery/programmer.jpg" alt="Illustration">
+                    </div>
+                </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Web Development</h3>
+                    <p>Building responsive and interactive websites.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UI/UX Design</h3>
+                    <p>Designing user-friendly and modern interfaces.</p>
+                </div>
+                <div class="service-card">
+                    <h3>SEO Optimization</h3>
+                    <p>Improving website ranking and visibility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section">
+            <h2>Our Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item"><img src="gallery/project1.jpg" alt="Project 1">
+                    <p>Project 1</p>
+                </div>
+                <div class="portfolio-item"><img src="gallery/project2.jpg" alt="Project 2">
+                    <p>Project 2</p>
+                </div>
+                <div class="portfolio-item"><img src="gallery/project3.jpg" alt="Project 3">
+                    <p>Project 3</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <p>"Amazing service and support!"</p>
+                    <strong>- Ali, Company A</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"They built our website perfectly."</p>
+                    <strong>- Sara, Company B</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Professional and creative team."</p>
+                    <strong>- Omar, Company C</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>How long does a project take?</h3>
+                <p>Depends on the complexity, usually between 2 to 6 weeks.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Do you offer support after delivery?</h3>
+                <p>Yes, we provide free support for the first 3 months.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What technologies do you use?</h3>
+                <p>We use HTML, CSS, JavaScript, and modern frameworks.</p>
+            </div>
+        </section>
+
+        <!-- Counters Section -->
+        <section id="counters" class="section counters">
+            <h2>Our Achievements</h2>
+            <div class="counter-grid">
+                <div class="counter-box">
+                    <span class="counter" data-target="150">0</span>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="counter-box">
+                    <span class="counter" data-target="50">0</span>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="counter-box">
+                    <span class="counter" data-target="5">0</span>
+                    <p>Years of Experience</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section id="newsletter" class="section newsletter">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter to get the latest updates.</p>
+            <form id="newsletterForm">
+                <input type="email" id="newsEmail" placeholder="Enter your email" required>
+                <button type="submit" class="primary">Subscribe</button>
+            </form>
+        </section>
+
+        <!-- Section 4: Contact -->
+        <section id="contact" class="section">
+            <h2>Contact the Developers</h2>
+            <div class="devs-grid">
+                <div class="dev-card">
+                    <strong>Ahmed Omar</strong>
+                    <div class="actions">
+                        <button class="icon-btn" data-email="ahmed@example.com">📋</button>
+                        <button class="primary" data-mailto="mailto:ahmed@example.com">Email</button>
+                    </div>
+                </div>
+            </div>
+            <form class="contact" id="contactForm">
+                <input type="text" id="name" placeholder="Your name" required />
+                <input type="email" id="email" placeholder="Your email" required />
+                <textarea id="message" placeholder="Message" class="full" rows="5" required></textarea>
+                <button type="submit" class="primary full">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="footer-inner">
+            <div>© <span id="year"></span> MyJS Site</div>
+            <div>Made with ❤️ — <a href="#contact">Contact us</a></div>
+        </div>
+    </footer>
+
+    <div class="top-actions">
+        <button class="icon-btn" id="backTop" title="Back to top">⬆</button>
+    </div>
+    <div class="toast" id="toast">Message sent</div>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Modal Gallery -->
+    <div class="modal" id="imgModal">
+        <span class="close" id="modalClose">&times;</span>
+        <img class="modal-content" id="modalImg" />
+        <div id="caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
