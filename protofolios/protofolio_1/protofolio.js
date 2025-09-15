@@ -40,8 +40,25 @@ if (themeBtn) {
 }
 
 // ==========================
+// humburger Menu
+// ==========================
+const hambBtn = $("#hambBtn");
+const mobileMenu = $("#mobileMenu");
+
+hambBtn.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  mobileMenu.setAttribute("aria-hidden", !open);
+});
+
+// غلق المينيو لما اضغط براها
+mobileMenu.addEventListener("click", (e) => {
+  if (e.target === mobileMenu) mobileMenu.classList.remove("open");
+});
+
+// ==========================
 // Back to Top Button
 // ==========================
+
 const backTop = $("#backTop");
 if (backTop) {
   backTop.addEventListener("click", () => {
