@@ -678,11 +678,13 @@ form.contact .full {
 }
 
 form.contact .primary.full {
-    grid-column: 1 / -1;   /* يخلّي الزرار ياخد صف كامل */
-    width: 100%;           /* ياخد العرض الكامل بس بدون زيادة */
+    display: block;
+    width: 100%;          /* يخلي الزرار نفس عرض البوكس */
+    max-width: 100%;      /* يمنع أي تمدد خارج البوكس */
     box-sizing: border-box;
-    text-align: center;
+    margin-top: 10px;     /* مسافة صغيرة من فوق */
 }
+
 
 
 input,
@@ -856,8 +858,12 @@ footer {
 }
 
 @media (max-width: 600px) {
+  form.contact {
+    grid-template-columns: 1fr; /* يخلي الأعمدة عمود واحد */
+  }
+
   form.contact .primary.full {
-    font-size: 14px;
-    padding: 12px;
+    grid-column: 1; /* يورّث عرض العمود الوحيد */
   }
 }
+
