@@ -872,7 +872,7 @@ footer {
 
   form.contact button.primary {
     grid-column: 1;   /* يلتزم بعرض العمود */
-    width: 100%;      /* عرض الزرار يساوي عرض الفورم */
+    width: 50%;      /* عرض الزرار يساوي عرض الفورم */
   }
 }
 
