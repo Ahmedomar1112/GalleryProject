@@ -13,35 +13,30 @@
   <!-- Navbar -->
   <canvas id="particles"></canvas>
   <header>
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-      <div class="mobile-menu-content">
-        <a href="../../index.html#home" class="link">Home</a>
-        <a href="../../index.html#services" class="link">Services</a>
-        <a href="portfolio.html" class="link active">Portfolio</a>
-        <a href="#contact" class="link">Contact</a>
-      </div>
-    </div>
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="nav-wrap">
+            <div class="brand">MyJS<span style="color:var(--text);">Site</span></div>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#home" class="link">Home</a></li>
+                    <li><a href="../../index.html#services" class="link">Services</a></li>
+                    <li><a href="portfolio.html" class="link active">Portfolio</a></li>
+                    <li><a href="#contact" class="link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <!-- Search Box (Hidden by default) -->
+                <div class="search-box" id="searchBox">
+                    <input type="text" id="searchInput" placeholder="Search sections..." />
+                    <button id="searchClose">✖</button>
+                </div>
 
-    <div class="progress-bar" id="progressBar"></div>
-    <div class="nav-wrap">
-      <div class="brand">MyJS<span style="color:var(--text);">Site</span></div>
-      <nav>
-        <ul>
-          <li><a href="../../index.html#home" class="link">Home</a></li>
-          <li><a href="../../index.html#services" class="link">Services</a></li>
-          <li><a href="portfolio.html" class="link active">Portfolio</a></li>
-          <li><a href="#contact" class="link" id="procontact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" title="Theme">🌓</button>
-        <button class="hamburger" id="hambBtn" aria-label="Open menu">
-          <span class="bar"></span>
-        </button>
-      </div>
-    </div>
-  </header>
+                <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
+                <button class="icon-btn" id="themeToggle" title="Theme">🌓</button>
+                <button class="hamburger" id="hambBtn" aria-label="Open menu"><span class="bar"></span></button>
+            </div>
+        </div>
+    </header>
 
   <main>
     <!-- Hero Section -->
