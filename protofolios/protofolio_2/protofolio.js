@@ -1,32 +1,30 @@
-// ==========================
-// Portfolio Page Script
-// ==========================
+// protofolio.js (or portfolio.js) — replace whole file with this
 
-// Helpers
+// small helper
 const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 
-// ==========================
-// Theme Toggle
-// ==========================
+// ------- THEME -------
 const THEME_KEY = "myjs:theme";
 const themeBtn = $("#themeToggle");
-
-// Apply theme
 const applyTheme = (theme) =>
   document.documentElement.setAttribute("data-theme", theme);
 
-// Load saved theme or system preference
-const saved = localStorage.getItem(THEME_KEY);
-if (saved) {
-  applyTheme(saved);
-} else {
-  const prefersDark =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme:dark)").matches;
-  applyTheme(prefersDark ? "dark" : "light");
+// load saved / system
+try {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === "dark" || saved === "light") {
+    applyTheme(saved);
+  } else {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme:dark)").matches;
+    applyTheme(prefersDark ? "dark" : "light");
+  }
+} catch (e) {
+  // localStorage might be disabled in some contexts — ignore
 }
 
-// Toggle theme on click
 if (themeBtn) {
   themeBtn.addEventListener("click", () => {
     const cur =
@@ -35,54 +33,45 @@ if (themeBtn) {
         : "light";
     const next = cur === "dark" ? "light" : "dark";
     applyTheme(next);
-    localStorage.setItem(THEME_KEY, next);
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch (e) {}
   });
 }
 
-
-
-
-// ==========================
-// humburger Menu
-// ==========================
+// ------- MOBILE MENU (safe) -------
 const hambBtn = $("#hambBtn");
 const mobileMenu = $("#mobileMenu");
+if (hambBtn && mobileMenu) {
+  hambBtn.addEventListener("click", () => {
+    const open = mobileMenu.classList.toggle("open");
+    mobileMenu.setAttribute("aria-hidden", !open);
+  });
 
-hambBtn.addEventListener("click", () => {
-  const open = mobileMenu.classList.toggle("open");
-  mobileMenu.setAttribute("aria-hidden", !open);
-});
+  // close when click outside inner content
+  mobileMenu.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) mobileMenu.classList.remove("open");
+  });
 
-// غلق المينيو لما اضغط براها
-mobileMenu.addEventListener("click", (e) => {
-  if (e.target === mobileMenu) mobileMenu.classList.remove("open");
-});
+  // close on link click inside mobile menu
+  mobileMenu.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => mobileMenu.classList.remove("open"))
+  );
+}
 
-
-
-
-
-// ==========================
-// Back to Top Button
-// ==========================
+// ------- BACK TO TOP -------
 const backTop = $("#backTop");
 if (backTop) {
-  backTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  backTop.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
 }
 
-// ==========================
-// Footer Year
-// ==========================
+// ------- YEAR -------
 const year = $("#year");
-if (year) {
-  year.textContent = new Date().getFullYear();
-}
+if (year) year.textContent = new Date().getFullYear();
 
-// ==========================
-// Preloader
-// ==========================
+// ------- PRELOADER -------
 window.addEventListener("load", () => {
   const preloader = $("#preloader");
   if (preloader) {
@@ -91,53 +80,76 @@ window.addEventListener("load", () => {
   }
 });
 
-// ==========================
-// Progress Bar
-// ==========================
+// ------- PROGRESS BAR -------
 const progressBar = $("#progressBar");
 if (progressBar) {
-  window.addEventListener("scroll", () => {
+  const updateProgress = () => {
     const scrollTop = window.scrollY;
     const docHeight =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
-    const scrolled = (scrollTop / docHeight) * 100;
+    const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     progressBar.style.width = scrolled + "%";
-  });
+  };
+  window.addEventListener("scroll", updateProgress);
+  // init
+  updateProgress();
 }
 
-// ==========================
-// Typing on Scroll
-// ==========================
+// ------- TYPING ON SCROLL (more robust) -------
 const typeEl = $("#typeTarget");
+const typeSection = $("#typing"); // observe section (more reliable)
 
 function typeText(el) {
-  const txt = el.dataset.text || el.textContent;
+  if (!el) return;
+  const txt = el.dataset.text || el.textContent || "";
   el.textContent = "";
   let i = 0;
-
-  function step() {
+  (function step() {
     if (i <= txt.length) {
+      // show a blinking caret while typing
       el.textContent = txt.slice(0, i) + (i % 2 ? "|" : "");
       i++;
       setTimeout(step, 28);
     } else {
       el.textContent = txt;
     }
-  }
-  step();
+  })();
 }
 
-const typeObs = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((en) => {
-      if (en.isIntersecting) {
-        typeText(typeEl);
-        typeObs.unobserve(en.target);
-      }
-    });
-  },
-  { threshold: 0.4 }
-);
-if (typeEl) typeObs.observe(typeEl);
+if ("IntersectionObserver" in window) {
+  if (typeSection && typeEl) {
+    const obs = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            typeText(typeEl);
+            observer.unobserve(en.target);
+          }
+        });
+      },
+      { threshold: 0.35 }
+    );
+    obs.observe(typeSection);
+  }
+} else {
+  // fallback: just type immediately if no observer support
+  if (typeEl) typeText(typeEl);
+}
 
+// ------- optional: animate elements on scroll (small generic helper) -------
+const reveals = $$(".reveal-on-scroll");
+if ("IntersectionObserver" in window && reveals.length) {
+  const revObs = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add("show");
+          observer.unobserve(en.target);
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+  reveals.forEach((r) => revObs.observe(r));
+}
