@@ -677,6 +677,14 @@ form.contact .full {
     grid-column: 1 / -1;
 }
 
+form.contact .primary.full {
+    grid-column: 1 / -1;   /* يخلّي الزرار ياخد صف كامل */
+    width: 100%;           /* ياخد العرض الكامل بس بدون زيادة */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
 input,
 textarea {
     padding: 10px;
@@ -845,4 +853,11 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+}
+
+@media (max-width: 600px) {
+  form.contact .primary.full {
+    font-size: 14px;
+    padding: 12px;
+  }
 }
