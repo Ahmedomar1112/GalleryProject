@@ -664,18 +664,26 @@ main {
 }
 
 form.contact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    background: var(--card);
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
 }
 
 form.contact .full {
-    grid-column: 1 / -1;
+  grid-column: 1 / -1; /* يخلي العنصر ياخد العرض كله */
 }
+
+form.contact button.primary {
+  width: 100%;          /* يخلي الزرار نفس عرض العمود */
+  max-width: 100%;      /* يمنع أي تمدد برا */
+  box-sizing: border-box;
+  display: block;
+}
+
 
 form.contact .primary.full {
     display: block;
@@ -859,11 +867,13 @@ footer {
 
 @media (max-width: 600px) {
   form.contact {
-    grid-template-columns: 1fr; /* يخلي الأعمدة عمود واحد */
+    grid-template-columns: 1fr; /* يخلي كل العناصر تحت بعض */
   }
 
-  form.contact .primary.full {
-    grid-column: 1; /* يورّث عرض العمود الوحيد */
+  form.contact button.primary {
+    grid-column: 1;   /* يلتزم بعرض العمود */
+    width: 100%;      /* عرض الزرار يساوي عرض الفورم */
   }
 }
+
 
