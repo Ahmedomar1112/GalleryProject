@@ -39,6 +39,17 @@ mobileMenu.addEventListener("click", (e) => {
 });
 
 // ==========================
+// Explore Services
+// ==========================
+
+const exploreBtn = document.querySelector(".primary[href='#services']");
+exploreBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  document.querySelector("#services").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+
+// ==========================
 // Search Box
 // ==========================
 const searchBtn = $("#searchBtn");
@@ -398,7 +409,7 @@ const newsletterForm = $("#newsletterForm");
 if (newsletterForm) {
   newsletterForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const email = $("#newsletterEmail").value.trim();
+    const email = $("#newsEmail").value.trim();
 
     if (!/^\S+@\S+\.\S+$/.test(email)) {
       showToast("Enter valid email");
