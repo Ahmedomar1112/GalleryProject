@@ -362,8 +362,8 @@ $$(".faq-item").forEach((item) => {
 const hero = document.querySelector('.hero');
 
 hero.addEventListener('mousemove', (e) => {
-  const x = (e.clientX / window.innerWidth - 0.5) * 30; 
-  const y = (e.clientY / window.innerHeight - 0.5) * 30;
+  const x = (e.clientX / window.innerWidth - 0.5) * 80; 
+  const y = (e.clientY / window.innerHeight - 0.5) * 80;
   hero.style.backgroundPosition = `${50 + x}% ${50 + y}%`;
 });
 hero.addEventListener('mouseleave', () => {
@@ -384,7 +384,7 @@ if (counters.length) {
           const el = en.target;
           const target = +el.dataset.target;
           let num = 0;
-          const step = target / 100;
+          const step = target / 200;
           const timer = setInterval(() => {
             num += step;
             if (num >= target) {
@@ -435,12 +435,12 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-const particles = Array.from({ length: 60 }, () => ({
+const particles = Array.from({ length: 300 }, () => ({
   x: Math.random() * canvas.width,
   y: Math.random() * canvas.height,
-  r: Math.random() * 3 + 1,
-  dx: (Math.random() - 0.5) * 0.6,
-  dy: (Math.random() - 0.5) * 0.6,
+  r: Math.random() * 3 + 1.8,
+  dx: (Math.random() - 0.5) * 0.7,
+  dy: (Math.random() - 0.5) * 0.7,
 }));
 
 function drawParticles() {
