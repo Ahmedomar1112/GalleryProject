@@ -55,6 +55,40 @@ header {
     box-shadow: var(--shadow);
 }
 
+.lens {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+            rgba(45, 212, 191, 0.25),
+            rgba(45, 212, 191, 0.05),
+            transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: transform 0.05s linear;
+    z-index: 9999;
+}
+
+/* النصوص */
+.magnify-text {
+    display: block;
+    position: relative;
+}
+
+.magnify-text span {
+    display: inline-block;
+    margin-right: 4px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.magnify-text span.active {
+    transform: scale(1.5);
+    color: var(--accent, #00ffd5);
+}
+
 .progress-bar {
     position: absolute;
     bottom: 0;
@@ -62,7 +96,7 @@ header {
     height: 4px;
     width: 0%;
     background: var(--accent);
-    transition: width 0.1s linear;
+    transition: width .3s linear;
 }
 
 
@@ -152,6 +186,8 @@ nav a.link.active {
     display: block;
     position: relative;
 }
+
+
 
 .hamburger .bar::before,
 .hamburger .bar::after {
@@ -455,6 +491,22 @@ main {
     box-shadow: var(--shadow);
 }
 
+.slide {
+    transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
+    transform: scale(0.9);
+    filter: blur(3px);
+    opacity: 0.6;
+}
+
+.slide.active-slide {
+    transform: scale(1.05);
+    filter: blur(0);
+    opacity: 1;
+    z-index: 2;
+}
+
+
+
 .slide img {
     height: 200px;
     object-fit: cover;
@@ -543,7 +595,7 @@ main {
 
 .illustration img {
     width: 100%;
-    height: 280px;
+    height: 350px;
     object-fit: cover;
     border-radius: 12px;
 }
@@ -596,7 +648,7 @@ main {
 
 .card-front img {
     width: 100px;
-    height: 100px;
+    height: 110px;
     border-radius: 50%;
     margin-bottom: 10px;
 }
@@ -664,33 +716,39 @@ main {
 }
 
 form.contact {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  background: var(--card);
-  padding: 16px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: var(--card);
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
 form.contact .full {
-  grid-column: 1 / -1; /* يخلي العنصر ياخد العرض كله */
+    grid-column: 1 / -1;
+    /* يخلي العنصر ياخد العرض كله */
 }
 
 form.contact button.primary {
-  width: 100%;          /* يخلي الزرار نفس عرض العمود */
-  max-width: 100%;      /* يمنع أي تمدد برا */
-  box-sizing: border-box;
-  display: block;
+    width: 100%;
+    /* يخلي الزرار نفس عرض العمود */
+    max-width: 100%;
+    /* يمنع أي تمدد برا */
+    box-sizing: border-box;
+    display: block;
 }
 
 
 form.contact .primary.full {
     display: block;
-    width: 100%;          /* يخلي الزرار نفس عرض البوكس */
-    max-width: 100%;      /* يمنع أي تمدد خارج البوكس */
+    width: 100%;
+    /* يخلي الزرار نفس عرض البوكس */
+    max-width: 100%;
+    /* يمنع أي تمدد خارج البوكس */
     box-sizing: border-box;
-    margin-top: 10px;     /* مسافة صغيرة من فوق */
+    margin-top: 10px;
+    /* مسافة صغيرة من فوق */
 }
 
 
@@ -773,27 +831,83 @@ footer {
     box-shadow: var(--shadow);
 }
 
-.preloader {
+/* ========== Intro Animation ========== */
+.intro {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg);
+    background: var(--bg, #0f172a);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     z-index: 9999;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 1.2s ease, transform 1.2s ease;
 }
 
-.spinner {
-    border: 6px solid var(--muted);
-    border-top: 6px solid var(--accent);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
+.intro.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.intro-content {
+    text-align: center;
+    animation: popIn 1.5s ease;
+}
+
+.intro-title {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #FFD700;
+    animation: glow 2s infinite alternate;
+}
+
+.intro-title span {
+    color: #00e5ff;
+}
+
+.intro-subtitle {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #ccc;
+    opacity: 0.8;
+}
+
+/* Glow effect */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #FFD700;
+    }
+
+    to {
+        text-shadow: 0 0 25px #FFD700, 0 0 40px #FFD700;
+    }
+}
+
+/* ظهور ناعم */
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* خروج ناعم */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 #particles {
@@ -809,13 +923,21 @@ footer {
 
 @keyframes spin {
     0% {
-        transform: rotate(0deg);
+        transform: rotate(0);
     }
 
     100% {
         transform: rotate(360deg);
     }
 }
+
+.intro.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+
 
 /* ==========================
    Responsive
@@ -866,14 +988,15 @@ footer {
 }
 
 @media (max-width: 600px) {
-  form.contact {
-    grid-template-columns: 1fr; /* يخلي كل العناصر تحت بعض */
-  }
+    form.contact {
+        grid-template-columns: 1fr;
+        /* يخلي كل العناصر تحت بعض */
+    }
 
-  form.contact button.primary {
-    grid-column: 1;   /* يلتزم بعرض العمود */
-    width: 50%;      /* عرض الزرار يساوي عرض الفورم */
-  }
+    form.contact button.primary {
+        grid-column: 1;
+        /* يلتزم بعرض العمود */
+        width: 50%;
+        /* عرض الزرار يساوي عرض الفورم */
+    }
 }
-
-

@@ -13,37 +13,39 @@
   <!-- Navbar -->
   <canvas id="particles"></canvas>
 
-  <header>
-        <div class="progress-bar" id="progressBar"></div>
-        <div class="nav-wrap">
-            <div class="brand">MyJS<span style="color:var(--text);">Site</span></div>
-            <nav>
-                <ul>
-                    <li><a href="../../index.html#home" class="link">Home</a></li>
-                    <li><a href="../../index.html#services" class="link">Services</a></li>
-                    <li><a href="portfolio.html" class="link active">Portfolio</a></li>
-                    <li><a href="#contact" class="link">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="nav-actions">
-                <!-- Search Box (Hidden by default) -->
-                <div class="search-box" id="searchBox">
-                    <input type="text" id="searchInput" placeholder="Search sections..." />
-                    <button id="searchClose">✖</button>
-                </div>
 
-                <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
-                <button class="icon-btn" id="themeToggle" title="Theme">🌓</button>
-                <button class="hamburger" id="hambBtn" aria-label="Open menu"><span class="bar"></span></button>
-            </div>
+  <header>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="nav-wrap">
+      <div class="lens" id="lens"></div>
+      <div class="brand">Z&lt;->S <span style="color:var(--text);">Site</span></div>
+      <nav>
+        <ul>
+          <li><a href="../../index.html#home" class="link">Home</a></li>
+          <li><a href="../../index.html#services" class="link">Services</a></li>
+          <li><a href="portfolio.html" class="link active">Portfolio</a></li>
+          <li><a href="#contact" class="link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-actions">
+        <!-- Search Box (Hidden by default) -->
+        <div class="search-box" id="searchBox">
+          <input type="text" id="searchInput" placeholder="Search sections..." />
+          <button id="searchClose">✖</button>
         </div>
-    </header>
+
+        <button class="icon-btn" id="searchBtn" title="Search">🔍</button>
+        <button class="icon-btn" id="themeToggle" title="Theme">🌓</button>
+        <button class="hamburger" id="hambBtn" aria-label="Open menu"><span class="bar"></span></button>
+      </div>
+    </div>
+  </header>
 
   <main>
     <!-- Hero Section -->
     <section id="hero" class="section hero">
       <div class="hero-content">
-        <h1>Ahmed Omar Portfolio 🚀</h1>
+        <h1>Zizo's Portfolio 🚀</h1>
         <p>Frontend Developer passionate about building interactive and modern web experiences.</p>
       </div>
     </section>
@@ -54,10 +56,11 @@
       <div class="typing-section">
         <div class="type-box">
           <div id="typeTarget" class="type-target"
-            data-text=" I am a driven Back-End Developer with a specialization in Python and Django. My experience encompasses the development of scalable web applications and practical projects, through which I continually enhance my skills via real-world application and online learning. I possess a strong passion for problem-solving and the creation of efficient backend systems."></div>
+            data-text=" I am a driven Back-End Developer with a specialization in Python and Django. My experience encompasses the development of scalable web applications and practical projects, through which I continually enhance my skills via real-world application and online learning. I possess a strong passion for problem-solving and the creation of efficient backend systems.">
+          </div>
         </div>
         <div class="illustration">
-          <img id="illImg" src="../../image/WhatsApp Image 2025-04-14 at 23.55.58_c28cc622 - Copy.jpg" alt="Illustration">
+          <img id="illImg" loading="lazy" src="../../image/zizo.jpg" alt="Illustration">
         </div>
       </div>
     </section>
@@ -82,15 +85,15 @@
       <h2>Projects</h2>
       <div class="portfolio-grid">
         <div class="portfolio-item">
-          <img src="../../gallery/project3.jpg" alt="Project 1">
+          <img loading="lazy" src="../../gallery/project3.jpg" alt="Project 1">
           <p>Landing Page for Business</p>
         </div>
         <div class="portfolio-item">
-          <img src="../../gallery/project1.jpg" alt="Project 2">
+          <img loading="lazy" src="../../gallery/project1.jpg" alt="Project 2">
           <p>Personal Blog Website</p>
         </div>
         <div class="portfolio-item">
-          <img src="../../gallery/project2.jpg" alt="Project 3">
+          <img loading="lazy" src="../../gallery/project2.jpg" alt="Project 3">
           <p>E-commerce Store</p>
         </div>
       </div>
@@ -111,8 +114,8 @@
   <!-- Footer -->
   <footer id="footer">
     <div class="footer-inner">
-      <div>© <span id="year"></span> Ahmed Omar</div>
-      <div>Made with ❤️ — <a href="../../index.html#contact">Contact me</a></div>
+      <div>© <span id="year"></span> Z&lt;->S</div>
+      <div>Made with Z&lt;->S — <a href="../../index.html#contact">Contact us</a></div>
     </div>
   </footer>
 
